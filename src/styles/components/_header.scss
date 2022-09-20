@@ -1,0 +1,176 @@
+.header {
+    // position: sticky;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+    transition: all 0.3s ease;
+
+    &.scrolled {
+        top: 30px;
+    }
+
+    &_container {
+        height: 4rem;
+        transition: all 1s ease-in-out;
+        position: relative;
+        padding: 15px;
+        background: transparent;
+        border-radius: 16px;
+        transition: border-top-color 0.2s linear 0s, border-right-color 0.2s linear 0.1s, border-bottom-color 0.2s linear 0.2s, border-left-color 0.2s linear 0.3s, background .5s ease-in-out;
+        border: 1px solid transparent;
+    }
+
+    &.scrolled &_container {
+        background-color: rgb(18 32 50 / 90%);
+        border-color: rgba(255,255,255,.1);
+        backdrop-filter: blur(10px);
+    }
+}
+
+.dropdown-container {
+    position: relative;
+
+    [type="checkbox"]:checked,
+    [type="checkbox"]:not(:checked) {
+        position: absolute;
+        left: -9999px;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .dropdown {
+        &:checked + label,
+        &:not(:checked) + label {
+            position: relative;
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 2;
+            height: 60px;
+            transition: all 200ms linear;
+            border-radius: 4px;
+            width: 10rem;
+            letter-spacing: 1px;
+            display: -webkit-inline-flex;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            -webkit-align-items: center;
+            -moz-align-items: center;
+            -ms-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            -moz-justify-content: center;
+            -ms-justify-content: center;
+            justify-content: center;
+            -ms-flex-pack: center;
+            text-align: center;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            color: #fff;
+            border: 1px solid var(--color-secondary);
+
+            &::before {
+                position: fixed;
+                top: 0;
+                left: 0;
+                content: "";
+                width: 100%;
+                height: 100vh;
+                z-index: -1;
+                cursor: auto;
+                pointer-events: none;
+            }
+        }
+
+        &:checked + label::before {
+            pointer-events: auto
+        }
+
+        &:checked ~ .section-dropdown {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+    }
+
+    .section-dropdown {
+        position: absolute;
+        padding: 5px;
+        background-color: #111;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        border-radius: 4px;
+        display: block;
+        z-index: 2;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(20px);
+        transition: all 200ms linear;
+
+        &:before {
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            content: "";
+            display: block;
+            z-index: 1;
+        }
+
+        &:after {
+            position: absolute;
+            top: -7px;
+            left: 30px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #111;
+            content: "";
+            display: block;
+            z-index: 2;
+            transition: all 200ms linear;
+        }
+
+        & a,
+        button {
+            position: relative;
+            color: #fff;
+            transition: all 200ms linear;
+            font-weight: 500;
+            font-size: 15px;
+            border-radius: 2px;
+            padding: 5px 0;
+            padding-left: 20px;
+            padding-right: 15px;
+            margin: 2px 0;
+            text-align: left;
+            text-decoration: none;
+            display: flex;
+            -moz-align-items: center;
+            -ms-align-items: center;
+            align-items: center;
+            justify-content: space-between;
+            -ms-flex-pack: distribute;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            width: 100%;
+            height: 35px;
+
+            &:hover {
+                color: #fff;
+                background-color: var(--color-secondary);
+            }
+
+            &:focus-visible {
+                outline: 2px dashed var(--color-secondary);
+                outline-offset: 2px;
+                border: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+$desktop-breakpoint: 1250px;
+$tablet-large-breakpoint: 850px;
+$tablet-breakpoint: 768px;
+$mobile-breakpoint: 480px;
+$fold-breakpoint: 200px;
+
+:root {
+    --bg-primary: #0a1220;
+    /* --bg-primary-rgb: 14, 14, 14; */
+    // --bg-primary-rgb: 9, 21, 40;
+    --bg-primary-rgb: 10, 18, 32;
+    --color-primary: #b62eb3;
+    /* --color-primary: #7E12C4; */
+    /* --color-primary: #00BCA4; */
+    --color-secondary: #00bca4;
+    --link-color: #888;
+}

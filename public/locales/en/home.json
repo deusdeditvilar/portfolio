@@ -1,0 +1,26 @@
+{
+  "home": "Home",
+  "hero": {
+    "top": "Hi, I am",
+    "middle": "Deusdedit Vilar",
+    "bottom": "I'm a self-taught Full-Stack developer with extensive programming experience including Django, React and more.",
+    "resume": "My Resume"
+  },
+  "about": {
+    "title": "A little about myself",
+    "desc": {
+      "first": "I'm a full-stack developer focused on Django development with Python. I am currently increasing my experiences in React and React Native with Typescript. I am always up to new challenges and responsibilities. I'm currently a freelancer, but I'm looking for opportunities to work in my field at a company.",
+      "second": "With a degree in Computer Science, I have been developing for over 3 years. In this time I worked with many different technologies from C to Java and even with Go. However, Python has always been my favorite language because of its simplicity and readability. It allows me to focus on the problem at hand rather than getting lost in the syntax details like other languages ​​can sometimes do."
+    }
+  },
+  "projects": {
+    "title": "Some of my works",
+    "likeit": "Like it?",
+    "seemore": "See more"
+  },
+  "contact": {
+    "title": "Now what?",
+    "txtdesk": "Well, you can contact me through these social networks on the side.",
+    "txtmob": "Well, you can contact me through these social networks below."
+  }
+}

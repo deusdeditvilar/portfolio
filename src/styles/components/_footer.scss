@@ -1,0 +1,23 @@
+footer {
+    background: rgba(11, 23, 38,1);
+    z-index: 11;
+    position: relative;
+
+    .footer-inner {
+        padding: 15px;
+        box-sizing: content-box;
+
+        .page-links {
+            text-align: center;
+            justify-content: center;
+            margin: 20px 0;
+
+            a {
+                text-align: center;
+                margin: 0 10px;
+                color: var(--link-color);
+                text-transform: uppercase;
+            }
+        }
+    }
+}
