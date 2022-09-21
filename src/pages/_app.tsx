@@ -7,9 +7,16 @@ import { useRouter } from 'next/router';
 import { DefaultSeo } from 'next-seo';
 import { Social } from '../components/Social';
 import Footer from '../components/Footer';
+import { useEffect } from 'react';
+import ReactGA from 'react-ga';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
+
+  useEffect(() => {
+    ReactGA.initialize(`${process.env.NEXT_PUBLIC_GTAG_ID}`);
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, [])
   return (
     <>
       <DefaultSeo
