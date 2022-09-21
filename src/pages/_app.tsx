@@ -53,6 +53,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             }
           ],
         }}
+        robotsProps={{noarchive:true,maxSnippet: -1}}
       />
       <Header />
       <AnimatePresence>
