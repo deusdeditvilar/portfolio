@@ -143,12 +143,14 @@ export async function getStaticProps({ locale }: any) {
     `,
     variables: {
       locale: [locale]
-    }
+    },
+
   });
   return {
     props: {
       ...(await serverSideTranslations(locale)),
       projects: data
     },
+    revalidate: 60 * 60 * 1,
   };
 }

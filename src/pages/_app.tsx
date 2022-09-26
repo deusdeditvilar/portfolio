@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
   useEffect(() => {
-    ReactGA.initialize(`${process.env.NEXT_PUBLIC_GTAG_ID}`);
+    ReactGA.initialize(`${process.env.NEXT_PUBLIC_GTAG_ID}`,{gaOptions: {siteSpeedSampleRate: 100}});
     ReactGA.pageview(window.location.pathname + window.location.search);
   }, [])
   return (
