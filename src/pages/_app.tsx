@@ -7,18 +7,25 @@ import { useRouter } from 'next/router';
 import { DefaultSeo } from 'next-seo';
 import { Social } from '../components/Social';
 import Footer from '../components/Footer';
-import { useEffect } from 'react';
-import ReactGA from 'react-ga';
+import Script from 'next/script';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
-  useEffect(() => {
-    ReactGA.initialize(`${process.env.NEXT_PUBLIC_GTAG_ID}`,{gaOptions: {siteSpeedSampleRate: 100}});
-    ReactGA.pageview(window.location.pathname + window.location.search);
-  }, [])
   return (
     <>
+      <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTAG_ID}`} />
+
+      <Script id='analytics' strategy="lazyOnload">
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${process.env.NEXT_PUBLIC_GTAG_ID}', {
+        page_path: window.location.pathname,
+        });
+    `}
+      </Script>
       <DefaultSeo
         titleTemplate='Deusdedit Vilar | %s'
         canonical={process.env.NEXT_PUBLIC_HOST}
@@ -53,7 +60,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             }
           ],
         }}
-        robotsProps={{noarchive:true,maxSnippet: -1}}
+        robotsProps={{ noarchive: true, maxSnippet: -1 }}
       />
       <Header />
       <AnimatePresence>
