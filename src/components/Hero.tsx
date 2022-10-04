@@ -72,7 +72,7 @@ export const Hero = () => {
                 {placeholderText.map((item, index) => {
                     return <AnimatedLetters className={item.class} {...item} key={index} />;
                 })}
-                <motion.a variants={resume} animate={controls} initial="hidden" className="resume-button" href={locale == 'en' ? "https://media.graphassets.com/DYdlv5WqRYasw0kXrZix" : "https://media.graphassets.com/GwTORoMWTDyw8RFmLiBy"} target="_blank" rel="noopener noreferrer">{t("hero.resume")}</motion.a>
+                <motion.a variants={resume} animate={controls} initial="hidden" className="resume-button" href={locale == 'en' ? process.env.NEXT_PUBLIC_RESUME_EN : process.env.NEXT_PUBLIC_RESUME_BR} target="_blank" rel="noopener noreferrer">{t("hero.resume")}</motion.a>
             </motion.div>
         </motion.section>
     )
