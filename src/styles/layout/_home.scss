@@ -119,6 +119,11 @@
                 width: 79px;
                 height: 77px;
             }
+
+            @media screen and (max-width: $tablet-large-breakpoint) {
+                position: sticky;
+                top: 135px;
+            }
         }
     }
 
