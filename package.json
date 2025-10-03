@@ -6,14 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
+    "@opennextjs/cloudflare": "latest",
     "classnames": "^2.3.1",
     "framer-motion": "^7.2.1",
     "graphql": "^16.6.0",
-    "next": "12.2.5",
+    "next": "14.2.0",
     "next-i18next": "^12.0.0",
     "next-seo": "^5.5.0",
     "react": "18.2.0",
@@ -26,6 +30,7 @@
     "@types/react-dom": "18.0.6",
     "eslint": "8.22.0",
     "eslint-config-next": "12.2.5",
-    "typescript": "4.8.2"
+    "typescript": "4.8.2",
+    "wrangler": "latest"
   }
 }

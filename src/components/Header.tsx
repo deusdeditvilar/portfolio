@@ -35,7 +35,7 @@ export default function Header() {
         })} >
             <div className="container flex flex-align-center flex-between header_container">
 
-                <Link href="/" >
+                <Link legacyBehavior href="/" >
                     <a aria-label="Website Logo" className="flex logo-box">
                         <Logo />
                     </a>

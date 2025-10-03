@@ -9,8 +9,8 @@
   "about": {
     "title": "A little about myself",
     "desc": {
-      "first": "I'm a full-stack developer focused on Django development with Python. I am currently increasing my experiences in React and React Native with Typescript. I am always up to new challenges and responsibilities. I'm currently a freelancer, but I'm looking for opportunities to work in my field at a company.",
-      "second": "With a degree in Computer Science, I have been developing for over 3 years. In this time I worked with many different technologies from C to Java and even with Go. However, Python has always been my favorite language because of its simplicity and readability. It allows me to focus on the problem at hand rather than getting lost in the syntax details like other languages ​​can sometimes do."
+      "first": "I am a Full-Stack Developer with over three years of professional experience, specializing in building robust back-end systems with Django and Python. I am currently expanding my expertise in modern front-end development using React and Vite.",
+      "second": "With a Computer Science degree and a background in diverse technical projects, I have progressed into a team leadership role, where I focus on guiding teams to deliver high-quality software. I am eager to contribute my technical and leadership skills to collaborative and challenging projects."
     }
   },
   "projects": {

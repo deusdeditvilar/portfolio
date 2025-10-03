@@ -1,3 +1,4 @@
+'use client'
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { motion, LayoutGroup } from "framer-motion";
@@ -10,64 +11,19 @@ import { client } from "../lib/apollo";
 import { gql } from "@apollo/client";
 import { ProjectProps } from "../types/Projects";
 import { Social } from "../components/Social";
+import { LangProps } from "../types/Langs";
 
-const cardLangs = [
-  {
-    "id": "py",
-    "name": "Python",
-    "img": "https://media.graphassets.com/j7nUTJtDThOdKIlVR1jv",
-  },
-  {
-    "id": "dj",
-    "name": "Django",
-    "img": "https://media.graphassets.com/XoyRduWnTq6vzAThXfcG"
-  },
-  {
-    "id": "ts",
-    "name": "Typescript",
-    "img": "https://media.graphassets.com/Rza595n2Rc6ZMKuF2V0q"
-  },
-  {
-    "id": "rjs",
-    "name": "React",
-    "img": "https://media.graphassets.com/wVqBSeHRNOrqvBRg41fw"
-  },
-  {
-    "id": "rn",
-    "name": "React Native",
-    "img": "https://media.graphassets.com/OpNcflykQKqORJHFlqMX"
-  },
-  {
-    "id": "ex",
-    "name": "Expo",
-    "img": "https://media.graphassets.com/X6W1F8AQxWXEMFnX7Lr9"
-  },
-  {
-    "id": "sass",
-    "name": "Sass",
-    "img": "https://media.graphassets.com/3cANQENsTC6QIbiN8kD1"
-  },
-  {
-    "id": "pg",
-    "name": "Postgresql",
-    "img": "https://media.graphassets.com/hQb3EujNRHq7rdtgycmC"
-  },
-  {
-    "id": "gql",
-    "name": "GraphQL",
-    "img": "https://media.graphassets.com/amF5g6yOQCqNcGyn2d2m"
-  },
-]
 
 interface GetProjectsQueryResponse {
-  projects: ProjectProps
+  projects: ProjectProps,
+  langsData: LangProps
 }
 
 type Params = {
   locale: string
 }
 
-export default function Home({ projects }: GetProjectsQueryResponse) {
+export default function Home({ projects, langsData }: GetProjectsQueryResponse) {
   const { t } = useTranslation("home");
 
   return (
@@ -92,11 +48,11 @@ export default function Home({ projects }: GetProjectsQueryResponse) {
             <ul className="lang-cards flex">
 
               {
-                cardLangs.map((card, count) => {
+                langsData.langTags.map((card, count) => {
                   return (
                     <motion.li key={card.id} className="card-lang gap-md" initial={{ opacity: 0, y: 150 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.1, delay: count * .05 }} viewport={{ once: true }} >
                       <div>
-                        <motion.img src={card.img} loading="lazy" alt={`${card.name} Logo`} />
+                        <motion.img src={card?.langUrl?.url} loading="lazy" alt={`${card.name} Logo`} />
                       </div>
                     </motion.li>
                   )
@@ -131,7 +87,7 @@ export default function Home({ projects }: GetProjectsQueryResponse) {
           </motion.ul>
 
           <div className="see_more">
-            <Link href={"/projects"}>
+            <Link legacyBehavior href={"/projects"}>
               <a >{t('projects.seemore')}</a>
             </Link>
           </div>
@@ -150,7 +106,7 @@ export default function Home({ projects }: GetProjectsQueryResponse) {
 
 export async function getStaticProps({ locale }: Params) {
 
-  const { data } = await client.query({
+  const { data: projectsIndexData } = await client.query({
     query: gql`
     query MyQuery($locale: [Locale!]!) {
       projects (
@@ -186,10 +142,36 @@ export async function getStaticProps({ locale }: Params) {
     }
   });
 
+    const { data: langsData } = await client.query({
+    query: gql`
+      query MyQuery($locale: [Locale!]!) {
+        langTags(
+          stage: PUBLISHED
+          locales: $locale
+          orderBy: publishedAt_ASC
+          where: {displayOnPage: true}
+        ) {
+          langUrl {
+            url
+          }
+          id
+          abbreviation
+          name
+          publishedAt
+        }
+      }
+    `,
+    variables: {
+      locale: [locale]
+    }
+  });
+
+
   return {
     props: {
       ...(await serverSideTranslations(locale, ["home", "common"])),
-      projects: data
+      projects: projectsIndexData,
+      langsData: langsData
     },
   };
 }
