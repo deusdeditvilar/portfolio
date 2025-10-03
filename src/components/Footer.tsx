@@ -12,8 +12,8 @@ export default function Footer() {
                     <Logo />
                 </div>
                 <div className="flex page-links">
-                    <Link href={"/"} ><a>Home</a></Link>
-                    <Link href={"/projects"}><a>{t('projects')}</a></Link>
+                    <Link legacyBehavior href={"/"} ><a>Home</a></Link>
+                    <Link legacyBehavior href={"/projects"}><a>{t('projects')}</a></Link>
                 </div>
             </div>
         </footer>
