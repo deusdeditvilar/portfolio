@@ -107,7 +107,7 @@
             left: 0;
             right: 0;
             margin: auto;
-            z-index: 999;
+            z-index: 100;
             cursor: auto;
         }
 
@@ -151,7 +151,7 @@
     height: 100vh;
     top: 0;
     left: 0;
-    z-index: 998;
+    // z-index: 99;
     background: rgba(0, 0, 0, 0.5);
     cursor: pointer;
 }

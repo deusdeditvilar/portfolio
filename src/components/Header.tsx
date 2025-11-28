@@ -24,6 +24,7 @@ export default function Header() {
     }, [])
 
     function changeLocale(lang: React.MouseEvent<HTMLButtonElement>) {
+        console.log(lang.currentTarget.value)
         router.push(router.route, router.asPath, {
             locale: lang.currentTarget.value,
         });

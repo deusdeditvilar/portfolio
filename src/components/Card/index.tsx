@@ -75,7 +75,7 @@ export function Card({ title, description, imageUrl, imageWidth, imageHeight, op
 
     return (
         <>
-            <motion.div {...rest} layout>
+            <motion.div {...rest} layout style={{position: "relative", zIndex: isExpanded ? 100 : 0}}>
                 <div className={`card`}>
                     <motion.div className={classNames('card-content-container', { "open": isExpanded })} onClick={selectHandler} onHoverStart={() => !isExpanded && controls.start("visible")} onHoverEnd={() => !isExpanded && controls.start("hidden")}>
                         <motion.div
@@ -119,7 +119,7 @@ const Overlay = ({ isExpanded, onClick }: any) => (
         initial={false}
         animate={{ opacity: isExpanded ? 1 : 0 }}
         transition={{ duration: 0.2 }}
-        style={{ pointerEvents: isExpanded ? "auto" : "none" }}
+        style={{ pointerEvents: isExpanded ? "auto" : "none", zIndex: isExpanded ? 99 : 0 }}
         className="overlay"
         onClick={onClick}
     >
